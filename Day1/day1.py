@@ -1,12 +1,10 @@
 class Elf:
-    def __init__(self, snacksList, name):
+    def __init__(self, snacksList):
         self.totalcalc = 0
-        self.snacks = snacksList
-        self.name = name
-        self.totalCal()
+        self.totalCal(snacksList)
 
-    def totalCal(self):
-        for item in self.snacks:
+    def totalCal(self, snacksList):
+        for item in snacksList:
             self.totalcalc += int(item)
         return self.totalcalc
 
@@ -27,8 +25,8 @@ def sortLogic(elf):
 def main():
     elfList = []
     snackList = parseTxt()
-    for index, item in enumerate(snackList):
-        tempElf = Elf(item, index)
+    for item in snackList:
+        tempElf = Elf(item)
         elfList.append(tempElf)
 
     elfList.sort(reverse=True, key=sortLogic)
@@ -39,7 +37,7 @@ def main():
         sumOfCalcTop += elfList[num].totalcalc
 
 # PART 1
-    print("Elf named " + str(elfList[0].name) + " has most calories = " + str(elfList[0].totalcalc))
+    print("Elf with most snacks has calories = " + str(elfList[0].totalcalc))
 # PART 2    
     print("Total calc on top " + str(topNumber) + " elf = " + str(sumOfCalcTop))
 
