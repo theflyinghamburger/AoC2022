@@ -41,7 +41,7 @@ def main():
 # PART 1
     print("Elf named " + str(elfList[0].name) + " has most calories = " + str(elfList[0].totalcalc))
 # PART 2    
-    print("Total calc on top" + str(topNumber) + "elf =" + str(sumOfCalcTop))
+    print("Total calc on top " + str(topNumber) + " elf = " + str(sumOfCalcTop))
 
 if __name__ == "__main__":
     main()
