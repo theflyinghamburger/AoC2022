@@ -1,30 +1,25 @@
 class pairOfElves:
     def __init__(self, assigned1, assigned2):
-        self.elf1 = set(self.expand(assigned1))
-        self.elf2 = set(self.expand(assigned2))
-        self.subset = self.subSet("subset")
-        self.anyoverlap = self.subSet("any")
+        elf1 = set(self.expand(assigned1))
+        elf2 = set(self.expand(assigned2))
+        self.subset, self.anyoverlap = self.subSet(elf1, elf2)
 
     def expand(self, assigned):
         range_ = assigned.split("-")
         expandedAssign = []
         for i in range(int(range_[0]), int(range_[1])+1):
             expandedAssign.append(i)
-        #print(expandedAssign)
         return expandedAssign
     
-    def subSet(self, mode):
-        a = self.elf1 & self.elf2
-        if mode == "subset":
-            if len(a) == len(self.elf1) or len(a) == len(self.elf2):
-                return True
-            else:
-                return False
-        elif mode == "any":
-            if len(a) > 0:
-                return True
-            else:
-                return False
+    def subSet(self, elf1, elf2):
+        a = elf1 & elf2
+        subset = False 
+        anyoverlap = False
+        if len(a) == len(elf1) or len(a) == len(elf2):
+            subset = True
+        if len(a) > 0:
+            anyoverlap = True
+        return subset, anyoverlap
 
 def parseTxt():
     f = open('Day4/day4.txt', encoding='utf8',mode = 'r')
